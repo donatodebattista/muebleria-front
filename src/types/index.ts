@@ -6,6 +6,8 @@ export type Client = {
     product: string
     facturado: boolean
     fechaInicio: string
+    telefono: string
+    dni: string
 }
 
 export type AuthCredentials = {

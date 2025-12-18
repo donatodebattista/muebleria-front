@@ -23,16 +23,18 @@ export default function ClienteForm({ initialData, onSubmit, onDelete } : Client
             product: '',
             fechaInicio: '',
             facturado: false,
-            plan: ''
+            plan: '',
+            telefono: '',
+            dni: ''
         }
     })
 
 
   return (
-    <div className="m-auto text-center font-black p-5 w-2/5 bg-slate-600 rounded-lg">
+    <div className="m-auto font-black p-5 w-2/5 bg-white rounded-lg">
         <div className="flex flex-row justify-between"> 
             <Link to="/clientes">
-                <Undo2 className="text-white mb-3 cursor-pointer w-6 h-6" />
+                <Undo2 className="text-black mb-3 cursor-pointer w-6 h-6" />
             </Link>
             
         {initialData?._id && ( //para mostrar solo cuando estoy editando
@@ -46,18 +48,20 @@ export default function ClienteForm({ initialData, onSubmit, onDelete } : Client
         )}
         </div>
         
-        <h1 className="text-white text-3xl mb-3">
+        <h1 className="text-black text-3xl mb-3 text-center">
             {initialData ? "Editar Cliente" : "Nuevo Cliente"}
         </h1>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="p-2 flex flex-col gap-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="p-2 flex flex-col gap-4">
+
+            <p className="text-left text-black mt-6">Datos del cliente</p>
 
             {/* Nombre */}
-            <div className="flex flex-row justify-between items-center bg-white p-2 rounded-sm">
+            <div className="flex flex-col bg-white rounded-sm">
                 <label htmlFor='name' className="mr-4 text-black font-bold">Nombre</label>
                 <input
                     type="text"
-                    className=" bg-gray-200 p-2 w-full text-gray-500 font-medium"
+                    className=" bg-gray-200 p-2 w-full text-gray-500 font-medium rounded-sm"
                     placeholder="Ingrese el nombre"
                     {...register('name', { required: "El nombre es obligatorio" })}
                 />
@@ -65,22 +69,53 @@ export default function ClienteForm({ initialData, onSubmit, onDelete } : Client
             {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
 
             {/* Email */}
-            <div className="flex flex-row justify-between items-center bg-white p-2 rounded-sm">
+            <div className="flex flex-col bg-white rounded-sm">
                 <label htmlFor='email' className="mr-4 text-black font-bold">Email</label>
                 <input
                     type="email"
-                    className=" bg-gray-200 p-2 w-full text-gray-500 font-medium"
+                    className=" bg-gray-200 p-2 w-full text-gray-500 font-medium rounded-sm"
                     placeholder="Ingrese el email"
                     {...register('email')}
                 />
             </div>
 
+            {/* Telefono */}
+            <div className="flex flex-col bg-white rounded-sm">
+                <label htmlFor='telefono' className="mr-4 text-black font-bold">Telefono</label>
+                <input
+                    type="text"
+                    className=" bg-gray-200 p-2 w-full text-gray-500 font-medium rounded-sm"
+                    placeholder="Ingrese el telefono"
+                    {...register('telefono', { required: "El telefono es obligatorio" })}
+                />
+            </div>
+            {errors.telefono && <ErrorMessage>{errors.telefono.message}</ErrorMessage>}
+
+
+            {/* DNI */}
+            <div className="flex flex-col bg-white rounded-sm">
+                <label htmlFor='dni' className="mr-4 text-black font-bold">DNI</label>
+                <input
+                    type="text"
+                    className=" bg-gray-200 p-2 w-full text-gray-500 font-medium rounded-sm"
+                    placeholder="Ingrese el DNI"
+                    {...register('dni')}
+                />
+            </div>
+
+            
+            
+            <hr className="text-[#c2c2c2] my-6"/>
+            <p className="text-left text-black">Datos del plan</p>
+
+
+
             {/* Producto */}
-            <div className="flex flex-row justify-between items-center bg-white p-2 rounded-sm">
+            <div className="flex flex-col bg-white rounded-sm">
                 <label htmlFor='product' className="mr-4 text-black font-bold">Producto</label>
                 <input
                     type="text"
-                    className=" bg-gray-200 p-2 w-full text-gray-500 font-medium"
+                    className=" bg-gray-200 p-2 w-full text-gray-500 font-medium rounded-sm"
                     placeholder="Ingrese el Producto"
                     {...register('product', { required: "El producto es obligatorio" })}
                 />
@@ -88,7 +123,7 @@ export default function ClienteForm({ initialData, onSubmit, onDelete } : Client
             {errors.product && <ErrorMessage>{errors.product.message}</ErrorMessage>}            
 
             {/* Fecha de inicio */}
-            <div className="flex flex-row justify-between items-center bg-white p-2 rounded-sm">
+            <div className="flex flex-col bg-white rounded-sm">
                 <label htmlFor='fechaInicio' className="mr-4 text-black font-bold">Fecha de inicio</label>
                 <input
                     type="date"
@@ -100,8 +135,8 @@ export default function ClienteForm({ initialData, onSubmit, onDelete } : Client
             {errors.fechaInicio && <ErrorMessage>{errors.fechaInicio.message}</ErrorMessage>}      
 
             {/* Facturado */}
-            <div className="flex flex-row items-center ">
-                <label htmlFor='facturado' className="mr-4 text-white font-bold">Facturado</label>
+            <div className="flex flex-row items-center">
+                <label htmlFor='facturado' className="mr-4 text-black font-bold">Facturado</label>
                 <input
                     type="checkbox"
                     defaultChecked={initialData?.facturado}
@@ -112,9 +147,9 @@ export default function ClienteForm({ initialData, onSubmit, onDelete } : Client
 
             {/* Plan */}
             <div className="flex flex-col">
-                <label htmlFor='plan' className="mr-4 text-white font-bold text-left">Detalles</label>
+                <label htmlFor='plan' className="mr-4 text-black font-bold text-left">Detalles</label>
                 <textarea
-                    className=" bg-white rounded-sm p-1 h-40 w-full"
+                    className=" bg-gray-200 rounded-sm p-1 h-40 w-full"
                     {...register('plan')}
                 />
             </div>
