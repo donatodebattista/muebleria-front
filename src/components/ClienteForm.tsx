@@ -25,7 +25,8 @@ export default function ClienteForm({ initialData, onSubmit, onDelete } : Client
             facturado: false,
             plan: '',
             telefono: '',
-            dni: ''
+            dni: '',
+            clientAddress: '',
         }
     })
 
@@ -103,7 +104,16 @@ export default function ClienteForm({ initialData, onSubmit, onDelete } : Client
                 />
             </div>
 
-            
+            {/* Direccion */}
+            <div className="flex flex-col bg-white rounded-sm">
+                <label htmlFor='clientAddress' className="mr-4 text-black font-bold">Direccion</label>
+                <input
+                    type="text"
+                    className=" bg-gray-200 p-2 w-full text-gray-500 font-medium rounded-sm"
+                    placeholder="Ingrese la direccion"
+                    {...register('clientAddress')}
+                />
+            </div>
             
             <hr className="text-[#c2c2c2] my-6"/>
             <p className="text-left text-black">Datos del plan</p>

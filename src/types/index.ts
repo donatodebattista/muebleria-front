@@ -8,6 +8,7 @@ export type Client = {
     fechaInicio: string
     telefono: string
     dni: string
+    clientAddress: string
 }
 
 export type AuthCredentials = {
