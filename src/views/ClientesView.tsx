@@ -25,7 +25,7 @@ export default function ClientesView() {
   });
 
   if (isLoading) return <Spinner/>
-  if (isError) return <h1 className="text-xl text-red-600">Error al cargar los clientes</h1>;
+  if (isError) return <Link to="/auth" className="text-red-500">Error al cargar los clientes</Link>;
 
   const filteredClients = clientes?.filter((cliente) =>
     cliente.name.toLowerCase().includes(search.toLowerCase())
