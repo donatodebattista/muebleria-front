@@ -8,6 +8,7 @@ import type { Client } from "../types";
 import { toast } from 'sonner'
 import { isAxiosError } from "axios";
 import { useQueryClient } from "@tanstack/react-query";
+import NotFoundView from "./NotFoundView";
 
 
 export default function ClienteDetalleView() {
@@ -24,7 +25,7 @@ export default function ClienteDetalleView() {
   });
 
   if (isLoading) return <Spinner />;
-  if (isError) return <div className="m-auto text-white font-bold text-2xl">Cliente no encontrado</div>;
+  if (isError) return <NotFoundView />;
   if (!client) return null;
 
 
