@@ -80,8 +80,8 @@ export default function ClienteForm({ initialData, onSubmit, onDelete } : Client
                     <input
                         type="text"
                         className="bg-gray-100 p-2.5 w-full text-gray-700 font-medium rounded border-none focus:ring-2 focus:ring-[#F17300] outline-none"
-                        placeholder="Mínimo 8 dígitos"
-                        {...register('telefono', { required: "El telefono es obligatorio" })}
+                        placeholder="Ingrese el telefono"
+                        {...register('telefono')}
                     />
                     {errors.telefono && <ErrorMessage>{errors.telefono.message}</ErrorMessage>}
                 </div>
@@ -146,10 +146,10 @@ export default function ClienteForm({ initialData, onSubmit, onDelete } : Client
             </div>
 
             <div className="flex flex-col">
-                <label htmlFor='plan' className="text-black font-bold text-sm mb-1">Detalles o Notas del Plan</label>
+                <label htmlFor='plan' className="text-black font-bold text-sm mb-1">Detalles del Plan</label>
                 <textarea
                     className="bg-gray-100 rounded p-3 h-32 w-full text-gray-700 font-medium border-none focus:ring-2 focus:ring-[#F17300] outline-none resize-none"
-                    placeholder="Información adicional relevante..."
+                    placeholder="Información del plan..."
                     {...register('plan')}
                 />
             </div>
