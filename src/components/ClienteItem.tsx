@@ -1,37 +1,42 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import type { Client } from '../types';
+import { Calendar, Package } from 'lucide-react';
 
 type ClienteItemProps = {
   cliente: Client;
 };
 
 export function ClienteItem({ cliente }: ClienteItemProps) {
-  return (
-    <li
-      className="border-b border-gray-300 hover:bg-gray-50 transition-colors bg-white w-full list-none"
-    >
-      <Link 
-        to={`/clientes/${cliente._id}`} 
-        className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 gap-2"
-      >
-        <div className="flex-1 min-w-0">
-          <p className="font-bold text-gray-800 text-lg sm:text-base truncate">
-            {cliente.name}
-          </p>
-        </div>
+  const navigate = useNavigate();
 
-        <div className="flex flex-row sm:flex-col justify-between items-baseline sm:text-right gap-2 sm:gap-0">
-          <p 
-            className="text-sm text-blue-600 font-medium truncate max-w-[200px] sm:max-w-[250px] md:max-w-md"
-            title={cliente.product}
-          >
-            {cliente.product}
-          </p>
-          <p className="text-xs text-gray-400 whitespace-nowrap">
-            {cliente.fechaInicio}
-          </p>
+  return (
+    <tr 
+      onClick={() => navigate(`/clientes/${cliente._id}`)}
+      className="hover:bg-slate-50/80 transition-colors cursor-pointer group"
+    >
+      <td className="px-6 py-4 whitespace-nowrap">
+        <div className="flex items-center">
+          <div className="h-10 w-10 shrink-0 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-sm">
+            {cliente.name.charAt(0).toUpperCase()}
+          </div>
+          <div className="ml-4">
+            <div className="text-sm font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors">{cliente.name}</div>
+            <div className="text-sm text-slate-500">{cliente.email || 'Sin email registrado'}</div>
+          </div>
         </div>
-      </Link>
-    </li>
+      </td>
+      <td className="px-6 py-4">
+        <div className="flex items-center text-sm text-slate-700">
+          <Package size={16} className="text-slate-400 mr-2 shrink-0" />
+          <span className="truncate max-w-[200px] md:max-w-xs block" title={cliente.product}>{cliente.product}</span>
+        </div>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-slate-500">
+        <div className="flex items-center justify-end font-medium">
+          <Calendar size={14} className="mr-1.5 text-slate-400" />
+          {cliente.fechaInicio}
+        </div>
+      </td>
+    </tr>
   );
 }
